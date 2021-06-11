@@ -17,8 +17,8 @@ public class RopePhysics : MonoBehaviour
     LineRenderer lineRend;
     public float lineWidth = 0.1f;
     public Material lineMaterial;
-    
-    
+
+    public enum RopeSide{LEFT,RIGHT};
     
 
     //Don't implement yet;
@@ -102,6 +102,22 @@ public class RopePhysics : MonoBehaviour
 
         rigidbody2.GetComponent<SpringJoint2D>().connectedBody = springs[springs.Count - 1].GetComponent<Rigidbody2D>();
         rigidbody2.GetComponent<SpringJoint2D>().distance = this.lengthOfSubdivisions;
+    }
+
+    public void applyRopeEndTo(RopeSide side,Rigidbody2D rb)
+    {
+        if (side == RopeSide.LEFT)
+        {
+            this.rigidbody1.GetComponent<SpringJoint2D>().connectedBody = null;
+            this.springs[0].GetComponent<SpringJoint2D>().connectedBody = rb;
+            this.rigidbody1 = rb;
+        }
+        else
+        {
+            this.rigidbody2.GetComponent<SpringJoint2D>().connectedBody = null;
+            this.springs[springs.Count - 1].GetComponent<SpringJoint2D>().connectedBody = rb;
+            this.rigidbody2 = rb;
+        }
     }
 
 
