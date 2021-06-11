@@ -5,39 +5,43 @@ using UnityEngine.Audio;
 
 public class Options : MonoBehaviour
 {
+	private const string PlayerPrefsPrefix = "options.";
+	private const string MasterVolumeName = "masterVolume";
+	private const string MusicVolumeName = "musicVolume";
+	private const string SoundVolumeName = "soundVolume";
 	private static Options instance;
 
 	public static float masterVolume
 	{
 		get
 		{
-			return GetVolume("masterVolume");
+			return GetVolume(MasterVolumeName);
 		}
 		set
 		{
-			SetVolume("masterVolume", value);
+			SetVolume(MasterVolumeName, value);
 		}
 	}
 	public static float musicVolume
 	{
 		get
 		{
-			return GetVolume("musicVolume");
+			return GetVolume(MusicVolumeName);
 		}
 		set
 		{
-			SetVolume("musicVolume", value);
+			SetVolume(MusicVolumeName, value);
 		}
 	}
 	public static float soundVolume
 	{
 		get
 		{
-			return GetVolume("soundVolume");
+			return GetVolume(SoundVolumeName);
 		}
 		set
 		{
-			SetVolume("soundVolume", value);
+			SetVolume(SoundVolumeName, value);
 		}
 	}
 
@@ -46,12 +50,13 @@ public class Options : MonoBehaviour
 	private AudioMixer mixer;
 
 
-	void Awake()
+	void Start()
 	{
 		if (instance == null)
 		{
 			instance = this;
 			Object.DontDestroyOnLoad(this.gameObject);
+			this.InitializeSettings();
 		}
 		else
 		{
@@ -59,11 +64,23 @@ public class Options : MonoBehaviour
 		}
 	}
 
-	private static void SetVolume(string name, float percentage)
+	private void InitializeSettings()
 	{
-		var input = Mathf.Max(float.MinValue, percentage);
+		SetVolume(MasterVolumeName, PlayerPrefs.GetFloat(PlayerPrefsPrefix + MasterVolumeName, 1), false);
+		SetVolume(MusicVolumeName, PlayerPrefs.GetFloat(PlayerPrefsPrefix + MusicVolumeName, 1), false);
+		SetVolume(SoundVolumeName, PlayerPrefs.GetFloat(PlayerPrefsPrefix + SoundVolumeName, 1), false);
+	}
+
+	private static void SetVolume(string name, float percentage, bool storeInPrefs = true)
+	{
+		float before = GetVolume(name);
+		var input = Mathf.Max(float.Epsilon, percentage);
 		var level = Mathf.Log(input) * 20;
 		instance.mixer.SetFloat(name, level);
+		if (storeInPrefs)
+		{
+			PlayerPrefs.SetFloat(PlayerPrefsPrefix + name, percentage);
+		}
 	}
 	private static float GetVolume(string name)
 	{
