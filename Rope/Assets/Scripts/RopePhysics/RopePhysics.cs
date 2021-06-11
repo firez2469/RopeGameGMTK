@@ -28,6 +28,11 @@ public class RopePhysics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GenerateRope();   
+    }
+
+    void GenerateRope()
+    {
         lengthOfSubdivisions = totalLength / numberOfSubdivisions;
         GameObject rend = new GameObject();
         rend.transform.parent = this.transform;
@@ -36,10 +41,10 @@ public class RopePhysics : MonoBehaviour
         lineRend.startWidth = this.lineWidth;
         lineRend.endWidth = this.lineWidth;
         lineRend.material = lineMaterial;
-        for(int i = 0; i < numberOfSubdivisions; i++)
+        for (int i = 0; i < numberOfSubdivisions; i++)
         {
             GameObject obj = new GameObject();
-            obj.name = "Rope Element"+i;
+            obj.name = "Rope Element" + i;
             obj.transform.parent = this.transform;
             Rigidbody2D body = obj.AddComponent<Rigidbody2D>();
             body.mass = subDivisionMass;
@@ -47,7 +52,7 @@ public class RopePhysics : MonoBehaviour
         }
 
 
-        for (int i =0;i<springs.Count;i++)
+        for (int i = 0; i < springs.Count; i++)
         {
             if (i == 0)
             {
@@ -86,10 +91,10 @@ public class RopePhysics : MonoBehaviour
                 joint.dampingRatio = 1;
 
             }
-            springs[i].AddComponent<CircleCollider2D>().radius=this.lengthOfSubdivisions;
+            springs[i].AddComponent<CircleCollider2D>().radius = this.lengthOfSubdivisions;
             springs[i].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-            
-          
+
+
         }
         rigidbody1.GetComponent<SpringJoint2D>().connectedBody = springs[0].GetComponent<Rigidbody2D>();
         rigidbody1.GetComponent<SpringJoint2D>().distance = this.lengthOfSubdivisions;
@@ -98,6 +103,7 @@ public class RopePhysics : MonoBehaviour
         rigidbody2.GetComponent<SpringJoint2D>().connectedBody = springs[springs.Count - 1].GetComponent<Rigidbody2D>();
         rigidbody2.GetComponent<SpringJoint2D>().distance = this.lengthOfSubdivisions;
     }
+
 
     private void Update()
     {
