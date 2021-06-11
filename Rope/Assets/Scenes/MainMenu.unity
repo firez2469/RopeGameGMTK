@@ -1419,6 +1419,7 @@ GameObject:
   - component: {fileID: 365060677}
   - component: {fileID: 365060679}
   - component: {fileID: 365060678}
+  - component: {fileID: 365060680}
   m_Layer: 5
   m_Name: MusicVolumeSlider
   m_TagString: Untagged
@@ -1519,6 +1520,21 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &365060680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365060676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40eafea92c92cd649b273755fb3b51c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffectSource: {fileID: 363961585332060055, guid: ead01a69ad82a5d458694933358fa39f, type: 3}
+  soundEffect: {fileID: 8300000, guid: 1b8873f67a64ec94aaa0505ba500260e, type: 3}
+  minDelay: 0.1
 --- !u!1 &366274257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,6 +1657,7 @@ GameObject:
   - component: {fileID: 408591368}
   - component: {fileID: 408591370}
   - component: {fileID: 408591369}
+  - component: {fileID: 408591371}
   m_Layer: 5
   m_Name: MasterVolumeSlider
   m_TagString: Untagged
@@ -1741,6 +1758,21 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &408591371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408591367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40eafea92c92cd649b273755fb3b51c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffectSource: {fileID: 363961585332060055, guid: ead01a69ad82a5d458694933358fa39f, type: 3}
+  soundEffect: {fileID: 8300000, guid: 1b8873f67a64ec94aaa0505ba500260e, type: 3}
+  minDelay: 0.1
 --- !u!1 &478287160
 GameObject:
   m_ObjectHideFlags: 0
@@ -4216,6 +4248,7 @@ GameObject:
   - component: {fileID: 2132393889}
   - component: {fileID: 2132393891}
   - component: {fileID: 2132393890}
+  - component: {fileID: 2132393892}
   m_Layer: 5
   m_Name: SoundVolumeSlider
   m_TagString: Untagged
@@ -4316,3 +4349,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2132393892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132393888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40eafea92c92cd649b273755fb3b51c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffectSource: {fileID: 363961585332060055, guid: ead01a69ad82a5d458694933358fa39f, type: 3}
+  soundEffect: {fileID: 8300000, guid: 1b8873f67a64ec94aaa0505ba500260e, type: 3}
+  minDelay: 0.1

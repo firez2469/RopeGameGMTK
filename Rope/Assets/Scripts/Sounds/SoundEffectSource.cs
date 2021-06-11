@@ -68,7 +68,7 @@ public class SoundEffectSource : MonoBehaviour
 
 		if (Time.time > this.endTime)
 		{
-			// Object.Destroy(this.gameObject);
+			Object.Destroy(this.gameObject);
 		}
 	}
 }
