@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 117919613}
   - component: {fileID: 117919612}
   - component: {fileID: 117919611}
+  - component: {fileID: 117919610}
   m_Layer: 5
   m_Name: HowToPlayButton
   m_TagString: Untagged
@@ -392,6 +393,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &117919610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117919608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9798b68508a98c4096680c7a17d7810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSourcePrefab: {fileID: 363961585332060055, guid: ead01a69ad82a5d458694933358fa39f, type: 3}
+  soundEffect: {fileID: 8300000, guid: 481d48819952b6049a1cba4c58709124, type: 3}
 --- !u!114 &117919611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2173,6 +2188,7 @@ GameObject:
   - component: {fileID: 697685041}
   - component: {fileID: 697685040}
   - component: {fileID: 697685044}
+  - component: {fileID: 697685045}
   m_Layer: 5
   m_Name: StartGameButton
   m_TagString: Untagged
@@ -2321,6 +2337,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: SampleScene
+  skipLoadingScene: 0
+--- !u!114 &697685045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697685038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9798b68508a98c4096680c7a17d7810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSourcePrefab: {fileID: 363961585332060055, guid: ead01a69ad82a5d458694933358fa39f, type: 3}
+  soundEffect: {fileID: 8300000, guid: 481d48819952b6049a1cba4c58709124, type: 3}
 --- !u!1 &719995870
 GameObject:
   m_ObjectHideFlags: 0
@@ -2760,6 +2791,7 @@ GameObject:
   - component: {fileID: 1092906714}
   - component: {fileID: 1092906713}
   - component: {fileID: 1092906718}
+  - component: {fileID: 1092906719}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -2799,6 +2831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9eb6e2e17a4e9042815f8ec09685889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 0.1
 --- !u!114 &1092906714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2923,6 +2956,20 @@ MonoBehaviour:
   disableOnStandalone: 0
   overrideEditorBehavior: 0
   disableInEditor: 0
+--- !u!114 &1092906719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092906711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9798b68508a98c4096680c7a17d7810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSourcePrefab: {fileID: 363961585332060055, guid: ead01a69ad82a5d458694933358fa39f, type: 3}
+  soundEffect: {fileID: 8300000, guid: 481d48819952b6049a1cba4c58709124, type: 3}
 --- !u!1 &1126523336
 GameObject:
   m_ObjectHideFlags: 0
@@ -3037,6 +3084,7 @@ GameObject:
   - component: {fileID: 1244582632}
   - component: {fileID: 1244582631}
   - component: {fileID: 1244582635}
+  - component: {fileID: 1244582636}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -3186,6 +3234,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPanel: {fileID: 478287160}
   nextPanel: {fileID: 984201781}
+--- !u!114 &1244582636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244582629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9798b68508a98c4096680c7a17d7810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSourcePrefab: {fileID: 363961585332060055, guid: ead01a69ad82a5d458694933358fa39f, type: 3}
+  soundEffect: {fileID: 8300000, guid: 481d48819952b6049a1cba4c58709124, type: 3}
 --- !u!1 &1342667786
 GameObject:
   m_ObjectHideFlags: 0
@@ -3913,6 +3975,7 @@ GameObject:
   - component: {fileID: 1840638142}
   - component: {fileID: 1840638141}
   - component: {fileID: 1840638139}
+  - component: {fileID: 1840638140}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -3954,6 +4017,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPanel: {fileID: 984201781}
   nextPanel: {fileID: 478287160}
+--- !u!114 &1840638140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840638137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9798b68508a98c4096680c7a17d7810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSourcePrefab: {fileID: 363961585332060055, guid: ead01a69ad82a5d458694933358fa39f, type: 3}
+  soundEffect: {fileID: 8300000, guid: 481d48819952b6049a1cba4c58709124, type: 3}
 --- !u!114 &1840638141
 MonoBehaviour:
   m_ObjectHideFlags: 0
