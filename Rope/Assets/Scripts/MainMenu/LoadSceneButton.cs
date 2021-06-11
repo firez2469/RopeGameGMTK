@@ -9,6 +9,8 @@ public class LoadSceneButton : MonoBehaviour
 {
 	[SerializeField]
 	private string sceneName;
+	[SerializeField]
+	private bool skipLoadingScene;
 
 	void Start()
 	{
@@ -18,6 +20,6 @@ public class LoadSceneButton : MonoBehaviour
 
 	private void ButtonClicked()
 	{
-		SceneManager.LoadScene(this.sceneName);
+		LoadingScene.LoadScene(this.sceneName, this.skipLoadingScene);
 	}
 }
