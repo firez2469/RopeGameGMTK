@@ -3468,7 +3468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8206436582363612978, guid: c5011aeb7799e78458fbb4426161f124, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.42
+      value: -3.42
       objectReference: {fileID: 0}
     - target: {fileID: 8206436582973189844, guid: c5011aeb7799e78458fbb4426161f124, type: 3}
       propertyPath: frequency
@@ -3496,7 +3496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8206436583239266747, guid: c5011aeb7799e78458fbb4426161f124, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.88
+      value: 6.63
       objectReference: {fileID: 0}
     - target: {fileID: 8206436583246685048, guid: c5011aeb7799e78458fbb4426161f124, type: 3}
       propertyPath: m_RootOrder

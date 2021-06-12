@@ -14,53 +14,41 @@ public class RopePhysics : MonoBehaviour
     public float frequency = 6;
 
     List<GameObject> springs = new List<GameObject>();
-    public LineRenderer lineRend;
+    LineRenderer lineRend;
     public float lineWidth = 0.1f;
     public Material lineMaterial;
 
     public enum RopeSide{LEFT,RIGHT};
     public int physicsDelayTime = 1;
-    public bool alreadyGenerated = false;
 
     //Don't implement yet;
     float drag;
 
+	[SerializeField]
+	private int ropeLayerIndex;
 
-    // Start is called before the first frame update
-    void Start()
+
+	// Start is called before the first frame update
+	void Start()
     {
-        if (!alreadyGenerated)
-        {
-            GenerateRope();
-        }
-        else
-        {
-            GetGeneratedRope();
-        }
-        
-        
+		GenerateRope();
     }
 
     void GenerateRope()
     {
         lengthOfSubdivisions = totalLength / numberOfSubdivisions;
-        Vector2 bodiesDiffVector = rigidbody1.transform.position - rigidbody2.transform.position;
-        
-        if (lineRend == null)
-        {
-            GameObject rend = new GameObject();
-            rend.transform.parent = this.transform;
-            rend.name = "Lines";
-            lineRend = rend.AddComponent<LineRenderer>();
-            lineRend.startWidth = this.lineWidth;
-            lineRend.endWidth = this.lineWidth;
-            lineRend.material = lineMaterial;
-        }
-        
+        GameObject rend = new GameObject();
+        rend.transform.parent = this.transform;
+        rend.name = "Lines";
+        lineRend = rend.AddComponent<LineRenderer>();
+        lineRend.startWidth = this.lineWidth;
+        lineRend.endWidth = this.lineWidth;
+        lineRend.material = lineMaterial;
         for (int i = 0; i < numberOfSubdivisions; i++)
         {
             GameObject obj = new GameObject();
-            obj.name = "Rope Element" + i;
+			obj.layer = this.ropeLayerIndex;
+			obj.name = "Rope Element" + i;
             obj.transform.parent = this.transform;
             Rigidbody2D body = obj.AddComponent<Rigidbody2D>();
             body.mass = subDivisionMass;
@@ -70,33 +58,32 @@ public class RopePhysics : MonoBehaviour
 
         for (int i = 0; i < springs.Count; i++)
         {
-            Vector2 posn1 = Vector2.zero;
-            Vector2 posn2 = Vector2.zero;
             if (i == 0)
             {
                 applyConnectedBody(i, rigidbody1);
-                posn1 = rigidbody1.transform.position;
+               
             }
             else
             {
                 applyConnectedBody(i, springs[i - 1].GetComponent<Rigidbody2D>());
-                posn1 = springs[i - 1].transform.position;
+                
               
             }
             if (i == springs.Count - 1)
             {
                 applyConnectedBody(i, rigidbody2);
-                posn2 = rigidbody2.transform.position;
+                
             }
             else
             {
                 applyConnectedBody(i, springs[i + 1].GetComponent<Rigidbody2D>());
-                posn2 = springs[i + 1].transform.position;
+              
+
             }
             springs[i].AddComponent<CircleCollider2D>().radius = this.lengthOfSubdivisions/2;
             springs[i].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
-            //springs[i].transform.position = posn1 + (posn2 - posn1)/2;
-           
+
+
         }
         rigidbody1.GetComponent<SpringJoint2D>().connectedBody = springs[0].GetComponent<Rigidbody2D>();
         rigidbody1.GetComponent<SpringJoint2D>().distance = this.lengthOfSubdivisions;
@@ -104,19 +91,6 @@ public class RopePhysics : MonoBehaviour
 
         rigidbody2.GetComponent<SpringJoint2D>().connectedBody = springs[springs.Count - 1].GetComponent<Rigidbody2D>();
         rigidbody2.GetComponent<SpringJoint2D>().distance = this.lengthOfSubdivisions;
-    }
-
-    void GetGeneratedRope()
-    {
-        SpringJoint2D[] joints = GetComponentsInChildren<SpringJoint2D>();
-        foreach(SpringJoint2D joint in joints)
-        {
-            if (!springs.Contains(joint.gameObject))
-            {
-                springs.Add(joint.gameObject);
-            }
-        }
-        
     }
 
     void applyConnectedBody(int i,Rigidbody2D rb)
@@ -162,7 +136,6 @@ public class RopePhysics : MonoBehaviour
             body.mass = subDivisionMass;
             CircleCollider2D collider =obj.AddComponent<CircleCollider2D>();
             collider.radius = this.lengthOfSubdivisions/2;
-           
             springs.Add(obj);
         }
 
@@ -255,13 +228,13 @@ public class RopePhysics : MonoBehaviour
             lineRend.SetPosition(i+1,springs[i].transform.position);
         }
         lineRend.SetPosition(springs.Count+1, rigidbody2.transform.position);
-        if (t > physicsDelayTime&&!alreadyGenerated)
+        if (t > physicsDelayTime)
         {
             rigidbody1.constraints = RigidbodyConstraints2D.FreezeRotation;
             rigidbody2.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         }
-        else if(!alreadyGenerated)
+        else
         {
             rigidbody1.constraints = RigidbodyConstraints2D.FreezeAll;
             rigidbody2.constraints = RigidbodyConstraints2D.FreezeAll;

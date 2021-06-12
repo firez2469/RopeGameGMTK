@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -52,6 +51,9 @@ public class Options : MonoBehaviour
 
 	void Start()
 	{
+		// Added the maximum Framerate
+		Application.targetFrameRate = 60;
+
 		if (instance == null)
 		{
 			instance = this;
@@ -63,6 +65,12 @@ public class Options : MonoBehaviour
 			Object.Destroy(this.gameObject);
 		}
 	}
+	
+	// This function will be used in the options menu, in a slider to adjust the framerate.
+	public void AdjustFrameRate(int frameRate)
+    {
+		Application.targetFrameRate = frameRate;
+    }
 
 	private void InitializeSettings()
 	{
