@@ -21,8 +21,6 @@ public class RopePhysics : MonoBehaviour
     public enum RopeSide{LEFT,RIGHT};
     public int physicsDelayTime = 1;
 
-    //Don't implement yet;
-    float drag;
 
 	[SerializeField]
 	private int ropeLayerIndex;

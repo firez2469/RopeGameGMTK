@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TempMovement : MonoBehaviour
 {
-    float normspeed = 5f;
-    float fastSpeed = 10f;
+    float normspeed = 7f;
+    float fastSpeed = 15f;
     float speed = 0;
     public bool p1 = false;
     // Start is called before the first frame update
