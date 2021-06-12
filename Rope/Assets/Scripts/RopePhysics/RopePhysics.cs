@@ -124,6 +124,55 @@ public class RopePhysics : MonoBehaviour
         }
     }
 
+    public void addLength(int count)
+    {
+        lineRend.positionCount += count;
+        int springsSize = springs.Count;
+        for(int i = 0; i < count; i++)
+        {
+
+            GameObject obj = new GameObject();
+            obj.name = "Rope Element" + (springsSize+i);
+            obj.transform.parent = this.transform;
+            Rigidbody2D body = obj.AddComponent<Rigidbody2D>();
+            body.mass = subDivisionMass;
+            springs.Add(obj);
+        }
+
+        SpringJoint2D[] joints = springs[springsSize - 1].GetComponents<SpringJoint2D>();
+        foreach(SpringJoint2D joint in joints)
+        {
+            if (joint.connectedBody.Equals(rigidbody2))
+            {
+                joint.connectedBody = springs[springsSize].GetComponent<Rigidbody2D>();
+            }
+        }
+        for (int i = 0; i < count; i++)
+        {
+            int index = i + springsSize;
+            //check if you've not reached the last one
+            if (springsSize + i < springs.Count - 1)
+            {
+                SpringJoint2D j = springs[index].AddComponent<SpringJoint2D>();
+                j.connectedBody = springs[index+1].GetComponent<Rigidbody2D>();
+                SpringJoint2D j2 = springs[index].AddComponent<SpringJoint2D>();
+                j2.connectedBody = springs[index - 1].GetComponent<Rigidbody2D>();
+            }
+            else
+            {
+                SpringJoint2D j = springs[index].AddComponent<SpringJoint2D>();
+                j.connectedBody = rigidbody2;
+                SpringJoint2D j2 = springs[index].AddComponent<SpringJoint2D>();
+                j2.connectedBody = springs[index - 1].GetComponent<Rigidbody2D>();
+                rigidbody2.GetComponent<SpringJoint2D>().connectedBody = j.GetComponent<Rigidbody2D>();
+            }
+        }
+    }
+
+    public void removeLength(int count)
+    {
+
+    }
 
     private void Update()
     {
