@@ -216,6 +216,60 @@ public class RopePhysics : MonoBehaviour
 
     }
 
+
+    public void attachTo(int side, Rigidbody2D body)
+    {
+        if (side == 0)
+        {
+            //rigidbody1.GetComponent<SpringJoint2D>().connectedBody = null;
+            rigidbody1.GetComponent<SpringJoint2D>().enabled = false;
+            foreach(SpringJoint2D joint in springs[0].GetComponents<SpringJoint2D>())
+            {
+                if (joint.connectedBody.Equals(rigidbody1))
+                {
+                    joint.connectedBody = body;
+                }
+            }
+            
+
+        } else if(side == 1)
+        {
+            rigidbody2.GetComponent<SpringJoint2D>().enabled = false;
+            foreach (SpringJoint2D joint in springs[springs.Count-1].GetComponents<SpringJoint2D>())
+            {
+                if (joint.connectedBody.Equals(rigidbody2))
+                {
+                    joint.connectedBody = body;
+                }
+            }
+        }
+        else
+        {
+            if (body.Equals(rigidbody1))
+            {
+                rigidbody1.GetComponent<SpringJoint2D>().enabled = true;
+                foreach (SpringJoint2D joint in springs[0].GetComponents<SpringJoint2D>())
+                {
+                    if (!joint.connectedBody.Equals(springs[1].GetComponent<Rigidbody>()))
+                    {
+                        joint.connectedBody = body;
+                    }
+                }
+            }
+            if (body.Equals(rigidbody2))
+            {
+                rigidbody2.GetComponent<SpringJoint2D>().enabled = true;
+                foreach (SpringJoint2D joint in springs[springs.Count - 1].GetComponents<SpringJoint2D>())
+                {
+                    if (joint.connectedBody.Equals(springs[springs.Count-2]))
+                    {
+                        joint.connectedBody = body;
+                    }
+                }
+            }
+        }
+    }
+
     float t = 0;
     private void Update()
     {
