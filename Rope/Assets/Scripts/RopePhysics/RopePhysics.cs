@@ -28,7 +28,8 @@ public class RopePhysics : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateRope();   
+        GenerateRope();
+        
     }
 
     void GenerateRope()
@@ -124,6 +125,7 @@ public class RopePhysics : MonoBehaviour
         }
     }
 
+    //rope must already have length.
     public void addLength(int count)
     {
         lineRend.positionCount += count;
@@ -136,6 +138,8 @@ public class RopePhysics : MonoBehaviour
             obj.transform.parent = this.transform;
             Rigidbody2D body = obj.AddComponent<Rigidbody2D>();
             body.mass = subDivisionMass;
+            CircleCollider2D collider =obj.AddComponent<CircleCollider2D>();
+            collider.radius = this.lengthOfSubdivisions;
             springs.Add(obj);
         }
 
@@ -155,22 +159,66 @@ public class RopePhysics : MonoBehaviour
             {
                 SpringJoint2D j = springs[index].AddComponent<SpringJoint2D>();
                 j.connectedBody = springs[index+1].GetComponent<Rigidbody2D>();
+                j.autoConfigureDistance = false;
+    
+                j.distance = this.lengthOfSubdivisions;
+                j.frequency = this.frequency;
+                j.dampingRatio = 1;
+
                 SpringJoint2D j2 = springs[index].AddComponent<SpringJoint2D>();
                 j2.connectedBody = springs[index - 1].GetComponent<Rigidbody2D>();
+                j2.autoConfigureDistance = false;
+                
+                j2.distance = this.lengthOfSubdivisions;
+                j2.frequency = this.frequency;
+                j2.dampingRatio = 1;
             }
             else
             {
                 SpringJoint2D j = springs[index].AddComponent<SpringJoint2D>();
                 j.connectedBody = rigidbody2;
+                j.autoConfigureDistance = false;
+              
+                j.distance = this.lengthOfSubdivisions;
+                j.frequency = this.frequency;
+                j.dampingRatio = 1;
                 SpringJoint2D j2 = springs[index].AddComponent<SpringJoint2D>();
                 j2.connectedBody = springs[index - 1].GetComponent<Rigidbody2D>();
                 rigidbody2.GetComponent<SpringJoint2D>().connectedBody = j.GetComponent<Rigidbody2D>();
+                j2.autoConfigureDistance = false;
+           
+                j2.distance = this.lengthOfSubdivisions;
+                j2.frequency = this.frequency;
+                j2.dampingRatio = 1;
             }
         }
+        Debug.Log(count+" segments added.");
     }
 
+    //this method works so long as you never hit zero.
     public void removeLength(int count)
     {
+        lineRend.positionCount -= count;
+        int springsCount = springs.Count;
+        for(int i = springsCount-1; i > 0; i--)
+        {
+            if (i > springsCount - count - 1)
+            {
+                springs.RemoveAt(i);
+            } else if (i == springsCount - count - 1)
+            {
+                SpringJoint2D[] joints = springs[i].GetComponents<SpringJoint2D>();
+                foreach (SpringJoint2D joint in joints)
+                {
+                    if (joint.connectedBody == null)
+                    {
+                        joint.connectedBody = rigidbody2;
+                    }
+                }
+                
+            }
+        }
+
 
     }
 
@@ -183,5 +231,10 @@ public class RopePhysics : MonoBehaviour
             lineRend.SetPosition(i+1,springs[i].transform.position);
         }
         lineRend.SetPosition(springs.Count+1, rigidbody2.transform.position);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            addLength(1);
+        }
     }
 }
