@@ -24,12 +24,14 @@ public class RopePhysics : MonoBehaviour
     //Don't implement yet;
     float drag;
 
+	[SerializeField]
+	private int ropeLayerIndex;
 
-    // Start is called before the first frame update
-    void Start()
+
+	// Start is called before the first frame update
+	void Start()
     {
-        GenerateRope();
-        
+		GenerateRope();
     }
 
     void GenerateRope()
@@ -45,7 +47,8 @@ public class RopePhysics : MonoBehaviour
         for (int i = 0; i < numberOfSubdivisions; i++)
         {
             GameObject obj = new GameObject();
-            obj.name = "Rope Element" + i;
+			obj.layer = this.ropeLayerIndex;
+			obj.name = "Rope Element" + i;
             obj.transform.parent = this.transform;
             Rigidbody2D body = obj.AddComponent<Rigidbody2D>();
             body.mass = subDivisionMass;

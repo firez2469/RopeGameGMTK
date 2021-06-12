@@ -203,6 +203,8 @@ MonoBehaviour:
   frequency: 6
   lineWidth: 0.1
   lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  physicsDelayTime: 1
+  ropeLayerIndex: 7
 --- !u!1 &8206436583239266694
 GameObject:
   m_ObjectHideFlags: 0
