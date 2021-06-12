@@ -62,6 +62,7 @@ public class RopePhysics : MonoBehaviour
                 joint.distance = this.lengthOfSubdivisions;
                 joint.frequency = this.frequency;
                 joint.dampingRatio = 1;
+                //joint.enableCollision = true;
             }
             else
             {
@@ -71,6 +72,7 @@ public class RopePhysics : MonoBehaviour
                 joint2.distance = this.lengthOfSubdivisions;
                 joint2.frequency = this.frequency;
                 joint2.dampingRatio = 1;
+                //joint2.enableCollision = true;
             }
             if (i == springs.Count - 1)
             {
@@ -80,6 +82,7 @@ public class RopePhysics : MonoBehaviour
                 joint2.distance = this.lengthOfSubdivisions;
                 joint2.frequency = this.frequency;
                 joint2.dampingRatio = 1;
+                //joint2.enableCollision = true;
             }
             else
             {
@@ -89,6 +92,7 @@ public class RopePhysics : MonoBehaviour
                 joint.distance = this.lengthOfSubdivisions;
                 joint.frequency = this.frequency;
                 joint.dampingRatio = 1;
+                //joint.enableCollision = true;
 
             }
             springs[i].AddComponent<CircleCollider2D>().radius = this.lengthOfSubdivisions;
