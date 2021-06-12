@@ -19,7 +19,7 @@ public class RopePhysics : MonoBehaviour
     public Material lineMaterial;
 
     public enum RopeSide{LEFT,RIGHT};
-    
+    public int physicsDelayTime = 1;
 
     //Don't implement yet;
     float drag;
@@ -57,46 +57,27 @@ public class RopePhysics : MonoBehaviour
         {
             if (i == 0)
             {
-                SpringJoint2D joint = springs[i].AddComponent<SpringJoint2D>();
-                joint.autoConfigureDistance = false;
-                joint.connectedBody = rigidbody1;
-                joint.distance = this.lengthOfSubdivisions;
-                joint.frequency = this.frequency;
-                joint.dampingRatio = 1;
-                //joint.enableCollision = true;
+                applyConnectedBody(i, rigidbody1);
+               
             }
             else
             {
-                SpringJoint2D joint2 = springs[i].AddComponent<SpringJoint2D>();
-                joint2.autoConfigureDistance = false;
-                joint2.connectedBody = springs[i - 1].GetComponent<Rigidbody2D>();
-                joint2.distance = this.lengthOfSubdivisions;
-                joint2.frequency = this.frequency;
-                joint2.dampingRatio = 1;
-                //joint2.enableCollision = true;
+                applyConnectedBody(i, springs[i - 1].GetComponent<Rigidbody2D>());
+                
+              
             }
             if (i == springs.Count - 1)
             {
-                SpringJoint2D joint2 = springs[i].AddComponent<SpringJoint2D>();
-                joint2.autoConfigureDistance = false;
-                joint2.connectedBody = rigidbody2;
-                joint2.distance = this.lengthOfSubdivisions;
-                joint2.frequency = this.frequency;
-                joint2.dampingRatio = 1;
-                //joint2.enableCollision = true;
+                applyConnectedBody(i, rigidbody2);
+                
             }
             else
             {
-                SpringJoint2D joint = springs[i].AddComponent<SpringJoint2D>();
-                joint.autoConfigureDistance = false;
-                joint.connectedBody = springs[i + 1].GetComponent<Rigidbody2D>();
-                joint.distance = this.lengthOfSubdivisions;
-                joint.frequency = this.frequency;
-                joint.dampingRatio = 1;
-                //joint.enableCollision = true;
+                applyConnectedBody(i, springs[i + 1].GetComponent<Rigidbody2D>());
+              
 
             }
-            springs[i].AddComponent<CircleCollider2D>().radius = this.lengthOfSubdivisions;
+            springs[i].AddComponent<CircleCollider2D>().radius = this.lengthOfSubdivisions/2;
             springs[i].GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
 
 
@@ -109,6 +90,18 @@ public class RopePhysics : MonoBehaviour
         rigidbody2.GetComponent<SpringJoint2D>().distance = this.lengthOfSubdivisions;
     }
 
+    void applyConnectedBody(int i,Rigidbody2D rb)
+    {
+        SpringJoint2D joint = springs[i].AddComponent<SpringJoint2D>();
+        joint.autoConfigureDistance = false;
+        joint.connectedBody = rb;
+        joint.distance = this.lengthOfSubdivisions;
+        joint.frequency = this.frequency;
+        joint.dampingRatio = 1;
+        joint.gameObject.AddComponent<RopeCollisionsExceptions>();
+        joint.enableCollision = true;
+        
+    }
     public void applyRopeEndTo(RopeSide side,Rigidbody2D rb)
     {
         if (side == RopeSide.LEFT)
@@ -139,7 +132,7 @@ public class RopePhysics : MonoBehaviour
             Rigidbody2D body = obj.AddComponent<Rigidbody2D>();
             body.mass = subDivisionMass;
             CircleCollider2D collider =obj.AddComponent<CircleCollider2D>();
-            collider.radius = this.lengthOfSubdivisions;
+            collider.radius = this.lengthOfSubdivisions/2;
             springs.Add(obj);
         }
 
@@ -222,6 +215,7 @@ public class RopePhysics : MonoBehaviour
 
     }
 
+    float t = 0;
     private void Update()
     {
         lineRend.positionCount = springs.Count + 2;
@@ -231,10 +225,18 @@ public class RopePhysics : MonoBehaviour
             lineRend.SetPosition(i+1,springs[i].transform.position);
         }
         lineRend.SetPosition(springs.Count+1, rigidbody2.transform.position);
-
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (t > physicsDelayTime)
         {
-            addLength(1);
+            rigidbody1.constraints = RigidbodyConstraints2D.FreezeRotation;
+            rigidbody2.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         }
+        else
+        {
+            rigidbody1.constraints = RigidbodyConstraints2D.FreezeAll;
+            rigidbody2.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+
+        t += Time.deltaTime;
     }
 }
