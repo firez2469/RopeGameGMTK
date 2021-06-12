@@ -20,7 +20,7 @@ public class RopePhysics : MonoBehaviour
 
     public enum RopeSide{LEFT,RIGHT};
     public int physicsDelayTime = 1;
-
+    
 
 	[SerializeField]
 	private int ropeLayerIndex;
@@ -122,97 +122,29 @@ public class RopePhysics : MonoBehaviour
     //rope must already have length.
     public void addLength(int count)
     {
-        lineRend.positionCount += count;
-        int springsSize = springs.Count;
-        for(int i = 0; i < count; i++)
-        {
-
-            GameObject obj = new GameObject();
-            obj.name = "Rope Element" + (springsSize+i);
-            obj.transform.parent = this.transform;
-            Rigidbody2D body = obj.AddComponent<Rigidbody2D>();
-            body.mass = subDivisionMass;
-            CircleCollider2D collider =obj.AddComponent<CircleCollider2D>();
-            collider.radius = this.lengthOfSubdivisions/2;
-            springs.Add(obj);
-        }
-
-        SpringJoint2D[] joints = springs[springsSize - 1].GetComponents<SpringJoint2D>();
-        foreach(SpringJoint2D joint in joints)
-        {
-            if (joint.connectedBody.Equals(rigidbody2))
+       foreach(GameObject spring in springs)
+       {
+            spring.GetComponent<CircleCollider2D>().radius *= 1.2f;
+            
+            foreach(SpringJoint2D joint in spring.GetComponents<SpringJoint2D>())
             {
-                joint.connectedBody = springs[springsSize].GetComponent<Rigidbody2D>();
-            }
-        }
-        for (int i = 0; i < count; i++)
-        {
-            int index = i + springsSize;
-            //check if you've not reached the last one
-            if (springsSize + i < springs.Count - 1)
-            {
-                SpringJoint2D j = springs[index].AddComponent<SpringJoint2D>();
-                j.connectedBody = springs[index+1].GetComponent<Rigidbody2D>();
-                j.autoConfigureDistance = false;
-    
-                j.distance = this.lengthOfSubdivisions;
-                j.frequency = this.frequency;
-                j.dampingRatio = 1;
-
-                SpringJoint2D j2 = springs[index].AddComponent<SpringJoint2D>();
-                j2.connectedBody = springs[index - 1].GetComponent<Rigidbody2D>();
-                j2.autoConfigureDistance = false;
-                
-                j2.distance = this.lengthOfSubdivisions;
-                j2.frequency = this.frequency;
-                j2.dampingRatio = 1;
-            }
-            else
-            {
-                SpringJoint2D j = springs[index].AddComponent<SpringJoint2D>();
-                j.connectedBody = rigidbody2;
-                j.autoConfigureDistance = false;
-              
-                j.distance = this.lengthOfSubdivisions;
-                j.frequency = this.frequency;
-                j.dampingRatio = 1;
-                SpringJoint2D j2 = springs[index].AddComponent<SpringJoint2D>();
-                j2.connectedBody = springs[index - 1].GetComponent<Rigidbody2D>();
-                rigidbody2.GetComponent<SpringJoint2D>().connectedBody = j.GetComponent<Rigidbody2D>();
-                j2.autoConfigureDistance = false;
-           
-                j2.distance = this.lengthOfSubdivisions;
-                j2.frequency = this.frequency;
-                j2.dampingRatio = 1;
-            }
-        }
-        Debug.Log(count+" segments added.");
+                joint.distance *= 1.2f;
+            } 
+       }
     }
 
     //this method works so long as you never hit zero.
     public void removeLength(int count)
     {
-        lineRend.positionCount -= count;
-        int springsCount = springs.Count;
-        for(int i = springsCount-1; i > 0; i--)
+
+        foreach (GameObject spring in springs)
         {
-            if (i > springsCount - count - 1)
+            spring.GetComponent<CircleCollider2D>().radius /= 1.2f;
+            foreach (SpringJoint2D joint in spring.GetComponents<SpringJoint2D>())
             {
-                springs.RemoveAt(i);
-            } else if (i == springsCount - count - 1)
-            {
-                SpringJoint2D[] joints = springs[i].GetComponents<SpringJoint2D>();
-                foreach (SpringJoint2D joint in joints)
-                {
-                    if (joint.connectedBody == null)
-                    {
-                        joint.connectedBody = rigidbody2;
-                    }
-                }
-                
+                joint.distance /= 1.2f;
             }
         }
-
 
     }
 
