@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public Button restart;
     public Button quit;
     public string SceneName;
+    public string NextLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +43,7 @@ public class GameManager : MonoBehaviour
     public void DisablePause()
     {
         Time.timeScale = 1;
-        print(uiElements.Length);
+        
         foreach (RectTransform element in uiElements)
         {
             if (element.CompareTag("Menu"))
@@ -59,6 +60,10 @@ public class GameManager : MonoBehaviour
         LoadingScene.LoadScene("Menu");
     }
 
+    public void toNextLevel()
+    {
+        LoadingScene.LoadScene(NextLevel);
+    }
     public void RestartLevel()
     {
         SceneManager.LoadScene(SceneName);
