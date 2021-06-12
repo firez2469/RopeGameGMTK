@@ -13,12 +13,16 @@ public class GameManager : MonoBehaviour
     public Button resume;
     public Button restart;
     public Button quit;
-    public string SceneName;
-    public string NextLevel;
+    public Text keysCollectedText;
+    public Image phaseInImage;
+    public static string SceneName;
+    public static string NextLevel;
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        phaseInImage.gameObject.SetActive(true);
         uiElements = (RectTransform[])GameObject.FindObjectsOfType(typeof(RectTransform));
         DisablePause();
         resume.onClick.AddListener(DisablePause);
@@ -84,6 +88,7 @@ public class GameManager : MonoBehaviour
                 DisablePause();
             }
         }
+        keysCollectedText.text = KeyScript.KeysCollected.ToString();
         
     }
 }

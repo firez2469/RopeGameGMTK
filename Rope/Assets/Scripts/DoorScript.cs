@@ -24,6 +24,7 @@ public class DoorScript : MonoBehaviour
         {
             Debug.Log("IT'S WORKING!!!, IT'S WORKING, WOOOOW, HELL YEAH!!");
             // make it so it loads the next scene.
+            LoadingScene.LoadScene(GameManager.NextLevel);
         }
     }
 }

@@ -12,7 +12,11 @@ public class KeyScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        KeysCollected++;
-        Destroy(this.gameObject);
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            KeysCollected++;
+            Destroy(this.gameObject);
+        }
+        
     }
 }
