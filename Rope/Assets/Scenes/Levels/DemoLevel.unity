@@ -609,7 +609,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 482908498}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071235, w: 0.7070901}
-  m_LocalPosition: {x: 9.01, y: -1.51, z: 0}
+  m_LocalPosition: {x: 8.64, y: -1.51, z: 0}
   m_LocalScale: {x: 1.7211697, y: 1.2827502, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2603,11 +2603,10 @@ MonoBehaviour:
   totalLength: 8
   subDivisionMass: 0.1
   frequency: 20
-  lineRend: {fileID: 1303539299}
   lineWidth: 0.1
   lineMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   physicsDelayTime: 1
-  alreadyGenerated: 1
+  ropeLayerIndex: 0
 --- !u!1 &1158813566
 GameObject:
   m_ObjectHideFlags: 0
