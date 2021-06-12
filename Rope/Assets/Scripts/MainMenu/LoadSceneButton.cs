@@ -11,6 +11,8 @@ public class LoadSceneButton : MonoBehaviour
 	private string sceneName;
 	[SerializeField]
 	private bool skipLoadingScene;
+    [SerializeField]
+    private float customMinLoadTime = -1;
 
 	void Start()
 	{
@@ -20,6 +22,14 @@ public class LoadSceneButton : MonoBehaviour
 
 	private void ButtonClicked()
 	{
-		LoadingScene.LoadScene(this.sceneName, this.skipLoadingScene);
+        if (customMinLoadTime < 0)
+        {
+            LoadingScene.LoadScene(this.sceneName, this.skipLoadingScene);
+        }
+        else
+        {
+            LoadingScene.SlowLoadScene(this.sceneName, this.skipLoadingScene, customMinLoadTime);
+        }
+		
 	}
 }
