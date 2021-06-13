@@ -71,8 +71,8 @@ public class GameManager : MonoBehaviour
 
     public void toNextLevel()
     {
-       
-            LoadingScene.SlowLoadScene(NextLevel, false, 2);
+        SceneManager.LoadScene(NextLevel);
+            //LoadingScene.SlowLoadScene(NextLevel, false, 2);
         
         //LoadingScene.LoadScene(NextLevel);
     }
