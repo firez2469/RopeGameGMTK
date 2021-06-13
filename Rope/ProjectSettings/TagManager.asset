@@ -7,6 +7,7 @@ TagManager:
   - ClearFloor
   - Key
   - Menu
+  - SimpleFloor
   layers:
   - Default
   - TransparentFX
