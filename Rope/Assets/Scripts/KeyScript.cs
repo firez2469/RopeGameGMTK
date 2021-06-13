@@ -5,6 +5,10 @@ public class KeyScript : MonoBehaviour
 {
     public int forPlayerNum = 1;
     bool thisKeyCollected = false;
+    private void Start()
+    {
+        KeysCollected = 0;
+    }
     public static int TotalKeys()
     {
         //return GameObject.FindObjectsOfType<KeyScript>().Length;

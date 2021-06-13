@@ -35,6 +35,7 @@ public class DoorScript : MonoBehaviour
             this.GetComponent<SpriteRenderer>().sprite = open;
             GameManager.gameOver = true;
             collision.gameObject.SetActive(false);
+            
         }
         else
         {

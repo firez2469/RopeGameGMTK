@@ -111,6 +111,8 @@ public class GameManager : MonoBehaviour
     IEnumerator waitForExit()
     {
         yield return new WaitForSeconds(3.5f);
+        GameManager.gameOver = false;
+        KeyScript.KeysCollected-= KeyScript.KeysCollected;
         this.toNextLevel();
     }
 }

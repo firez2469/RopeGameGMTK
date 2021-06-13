@@ -55,8 +55,11 @@ public class PlayerController : MonoBehaviour
             this.gameObject.AddComponent<Rigidbody2D>();
             this.gameObject.transform.Rotate(0, 0, 1);
         }
-        
-            
+
+        if (GameManager.gameOver)
+        {
+            gameObject.transform.parent.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        }
 
     }
 
