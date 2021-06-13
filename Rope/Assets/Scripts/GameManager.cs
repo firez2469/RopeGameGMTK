@@ -66,16 +66,13 @@ public class GameManager : MonoBehaviour
 
     void QuitToMenu()
     {
-        LoadingScene.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void toNextLevel()
     {
        
-        
             LoadingScene.SlowLoadScene(NextLevel, false, 2);
-        
-
         
         //LoadingScene.LoadScene(NextLevel);
     }

@@ -22,6 +22,8 @@ public class QuitGameButton : MonoBehaviour
 	private IEnumerator QuitDelayed()
 	{
 		yield return new WaitForSeconds(delay);
+        Application.Quit();
+
 #if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
 #else
