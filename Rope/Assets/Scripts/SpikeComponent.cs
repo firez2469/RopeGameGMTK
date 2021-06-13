@@ -9,7 +9,15 @@ public class SpikeComponent : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            print("Death");
+            collision.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+            StartCoroutine(restartGame());
         }
+    }
+
+    private IEnumerator restartGame()
+    {
+        yield return new WaitForSeconds(3);
+        GameManager.RestartLevel();
+
     }
 }

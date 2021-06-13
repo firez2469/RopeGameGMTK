@@ -17,11 +17,14 @@ public class GameManager : MonoBehaviour
     public Image phaseInImage;
     public static string SceneName;
     public static string NextLevel;
-    
+    public string scene;
+    public string nextLevel;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.SceneName = scene;
+        GameManager.NextLevel = nextLevel;
         phaseInImage.gameObject.SetActive(true);
         uiElements = (RectTransform[])GameObject.FindObjectsOfType(typeof(RectTransform));
         DisablePause();
@@ -68,7 +71,7 @@ public class GameManager : MonoBehaviour
     {
         LoadingScene.LoadScene(NextLevel);
     }
-    public void RestartLevel()
+    public static void RestartLevel()
     {
         SceneManager.LoadScene(SceneName);
     }
