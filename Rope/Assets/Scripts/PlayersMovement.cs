@@ -28,7 +28,7 @@ public class PlayersMovement : MonoBehaviour
 
         // Ground checks for player 2 position
         RaycastHit2D hit2 = Physics2D.Raycast(groundCheckP2.position, -Vector2.up, 0.35f,layer_mask);
-        
+       
 
         #region Player 1 Controls
         // jumping mechanic (just makes sure that you hitting the ground in order to jump

@@ -65,6 +65,7 @@ public class RopePhysics : MonoBehaviour
             Rigidbody2D body = obj.AddComponent<Rigidbody2D>();
             body.mass = subDivisionMass;
             springs.Add(obj);
+            
         }
 
 
