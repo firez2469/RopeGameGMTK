@@ -11,9 +11,12 @@ public class PlayersMovement : MonoBehaviour
     public Transform groundCheckP2;
 
     const float speed = 15.0f;
-    const float jumpForce = 50.0f;
+    const float jumpForce = 500.0f;
     const float maximumVelocity = 10.0f;
 
+    const float jumpCooldown = 0.5f;
+    float t1 = 0;
+    float t2 = 0;
 
     // Update is called once per frame
     void Update()
@@ -35,11 +38,13 @@ public class PlayersMovement : MonoBehaviour
         if (hit.collider != null)
         {
             print(hit.transform.name);
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.W)&&t1>jumpCooldown)
             {
                 player1.AddForce(new Vector2(0, jumpForce));
+                t1 = 0;
             }
         }
+        t1 += Time.deltaTime;
 
         // A is for going to the left
         if (Input.GetKey(KeyCode.A)) { player1.AddForce(new Vector2(-speed, 0)); }
@@ -64,11 +69,13 @@ public class PlayersMovement : MonoBehaviour
         if (hit2.collider != null)
         {
             print(hit.transform.name);
-            if (Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKeyDown(KeyCode.UpArrow)&&t2>jumpCooldown)
             {
                 player2.AddForce(new Vector2(0, jumpForce));
+                t2 = 0;
             }
         }
+        t2 += Time.deltaTime;
 
         // Left Arrow is going to the left
         if (Input.GetKey(KeyCode.LeftArrow)) { player2.AddForce(new Vector2(-speed, 0)); }

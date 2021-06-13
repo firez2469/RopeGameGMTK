@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     public SpriteRenderer display;
 
+    
 
     // Start is called before the first frame update
     void Start()
