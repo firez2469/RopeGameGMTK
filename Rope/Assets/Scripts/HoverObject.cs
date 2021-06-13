@@ -15,7 +15,7 @@ public class HoverObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(Mathf.Sin(Time.time));
+        
         transform.position = initialPosn+ (Vector2)transform.up * Mathf.Sin(Time.time)*size;
     }
 }

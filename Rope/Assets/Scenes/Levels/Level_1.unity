@@ -7525,7 +7525,7 @@ GameObject:
   - component: {fileID: 672209646}
   - component: {fileID: 672209648}
   - component: {fileID: 672209647}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (2)
   m_TagString: ClearFloor
   m_Icon: {fileID: 0}
@@ -7770,6 +7770,7 @@ GameObject:
   m_Component:
   - component: {fileID: 771389911}
   - component: {fileID: 771389910}
+  - component: {fileID: 771389912}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -7811,6 +7812,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &771389912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771389909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4e7df0dce4e4ef4189dd1cee164ff3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 1764578397}
+  groundCheckP1: {fileID: 1764578393}
+  player2: {fileID: 1002395296}
+  groundCheckP2: {fileID: 1002395302}
 --- !u!1 &836968404
 GameObject:
   m_ObjectHideFlags: 0
@@ -8574,7 +8591,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b406aa3d73215db4fb0de48bc0812d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: 0
 --- !u!231 &1002395299
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -8748,7 +8764,7 @@ GameObject:
   - component: {fileID: 1095046442}
   - component: {fileID: 1095046444}
   - component: {fileID: 1095046443}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (8)
   m_TagString: SimpleFloor
   m_Icon: {fileID: 0}
@@ -10039,7 +10055,7 @@ GameObject:
   - component: {fileID: 1281311797}
   - component: {fileID: 1281311799}
   - component: {fileID: 1281311798}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (4)
   m_TagString: SimpleFloor
   m_Icon: {fileID: 0}
@@ -10180,7 +10196,7 @@ GameObject:
   - component: {fileID: 1304794201}
   - component: {fileID: 1304794203}
   - component: {fileID: 1304794202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (7)
   m_TagString: SimpleFloor
   m_Icon: {fileID: 0}
@@ -11271,7 +11287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b406aa3d73215db4fb0de48bc0812d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: 1
 --- !u!231 &1764578396
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -11538,7 +11553,7 @@ GameObject:
   - component: {fileID: 1797318318}
   - component: {fileID: 1797318320}
   - component: {fileID: 1797318319}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (9)
   m_TagString: SimpleFloor
   m_Icon: {fileID: 0}
@@ -11784,7 +11799,7 @@ GameObject:
   - component: {fileID: 1820254780}
   - component: {fileID: 1820254782}
   - component: {fileID: 1820254781}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Square (3)
   m_TagString: SimpleFloor
   m_Icon: {fileID: 0}
@@ -12111,7 +12126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b406aa3d73215db4fb0de48bc0812d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: 1
 --- !u!114 &1859718610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12124,7 +12138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b406aa3d73215db4fb0de48bc0812d92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  p1: 0
 --- !u!1 &1863725520
 GameObject:
   m_ObjectHideFlags: 0
