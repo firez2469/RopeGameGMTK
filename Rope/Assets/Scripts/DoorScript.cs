@@ -20,7 +20,7 @@ public class DoorScript : MonoBehaviour
         {
             doorLocked = false;
         }
-        print("Comarison:"+KeyScript.TotalKeys() + ":" + KeyScript.KeysCollected);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

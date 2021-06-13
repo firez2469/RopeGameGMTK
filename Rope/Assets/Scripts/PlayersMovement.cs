@@ -18,19 +18,23 @@ public class PlayersMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //get singular layer that raycast looks at
+        int layer_mask = LayerMask.GetMask("Environment");
+
         // This makes a raycast in order to know if he's touching the ground in order to jump, (because it doesn't make sense if he's in the
         // air and jumping mid air, bruh).
         // Ground Checks for Player 1 position
-        RaycastHit2D hit = Physics2D.Raycast(groundCheckP1.position, -Vector2.up, 0.35f);
+        RaycastHit2D hit = Physics2D.Raycast(groundCheckP1.position, -Vector2.up, 0.35f,layer_mask);
 
         // Ground checks for player 2 position
-        RaycastHit2D hit2 = Physics2D.Raycast(groundCheckP2.position, -Vector2.up, 0.35f);
-
+        RaycastHit2D hit2 = Physics2D.Raycast(groundCheckP2.position, -Vector2.up, 0.35f,layer_mask);
+        
 
         #region Player 1 Controls
         // jumping mechanic (just makes sure that you hitting the ground in order to jump
         if (hit.collider != null)
         {
+            print(hit.transform.name);
             if (Input.GetKey(KeyCode.W))
             {
                 player1.AddForce(new Vector2(0, jumpForce));
