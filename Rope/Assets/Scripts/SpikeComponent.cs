@@ -9,17 +9,7 @@ public class SpikeComponent : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            SpringJoint2D joint = collision.gameObject.GetComponent<SpringJoint2D>();
-            foreach(SpringJoint2D j in joint.connectedBody.GetComponents<SpringJoint2D>())
-            {
-                j.enabled = !isEnabled;
-            }
-
-            joint.enabled = !isEnabled;
-            
-
-            //collision.gameObject.GetComponent<SpringJoint2D>().connectedBody = collision.GetComponent<Rigidbody2D>();
-            collision.gameObject.GetComponent<BoxCollider2D>().enabled = !isEnabled;
+            print("Death");
         }
     }
 }
