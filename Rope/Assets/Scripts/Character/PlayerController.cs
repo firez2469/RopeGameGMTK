@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int playerNum = 1;
     public bool inAir = true;
+    bool isDead = false;
 
     public Animator anim;
     public SpriteRenderer display;
@@ -48,6 +49,12 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+        if (isDead)
+        {
+            this.transform.parent = null;
+            this.gameObject.AddComponent<Rigidbody2D>();
+            this.gameObject.transform.Rotate(0, 0, 1);
+        }
         
             
 
@@ -59,6 +66,10 @@ public class PlayerController : MonoBehaviour
         {
             if(collision.transform.position.y<this.transform.position.y)
             inAir = false;
+        }
+        if(collision.GetComponent<SpikeComponent>() != null)
+        {
+            isDead = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

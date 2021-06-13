@@ -8,6 +8,10 @@ public class DoorScript : MonoBehaviour
     [SerializeField]
     bool doorLocked = true;
 
+    public Sprite closed;
+    public Sprite open;
+    
+
 
     void Update()
     {
@@ -20,11 +24,18 @@ public class DoorScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (doorLocked == false)
+        print("Triggered");
+        if (!doorLocked )
         {
             Debug.Log("IT'S WORKING!!!, IT'S WORKING, WOOOOW, HELL YEAH!!");
             // make it so it loads the next scene.
-            LoadingScene.LoadScene(GameManager.NextLevel);
+            //LoadingScene.LoadScene(GameManager.NextLevel);
+        }
+        else
+        {
+            this.GetComponent<SpriteRenderer>().sprite = open;
+            GameManager.gameOver = true;
+            collision.gameObject.SetActive(false);
         }
     }
 }

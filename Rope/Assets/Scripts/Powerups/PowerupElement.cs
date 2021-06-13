@@ -17,7 +17,7 @@ public class PowerupElement : MonoBehaviour
             }
             else
             {
-                print("Collided");
+                
                 collision.transform.parent.GetComponentInChildren<RopePhysics>().removeLength(1);
             }
             Destroy(this.gameObject);

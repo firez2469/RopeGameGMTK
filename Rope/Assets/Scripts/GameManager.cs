@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public bool gamePaused = false;
     bool gameInUnPauseState = false;
-    public bool gameOver = false;
+    public static bool gameOver = false;
     RectTransform[] uiElements;
     public Button resume;
     public Button restart;
@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public static string NextLevel;
     public string scene;
     public string nextLevel;
+    private bool startedExit = false;
 
 
     // Start is called before the first frame update
@@ -93,6 +94,23 @@ public class GameManager : MonoBehaviour
             }
         }
         keysCollectedText.text = KeyScript.KeysCollected.ToString();
+        if (GameManager.gameOver)
+        {
+            phaseInImage.GetComponent<Animator>().Play("PhaseOut");
+            if (!startedExit)
+            {
+
+                StartCoroutine(waitForExit());
+                startedExit = true;
+            }
+
+        }
         
+    }
+
+    IEnumerator waitForExit()
+    {
+        yield return new WaitForSeconds(3.5f);
+        this.toNextLevel();
     }
 }
