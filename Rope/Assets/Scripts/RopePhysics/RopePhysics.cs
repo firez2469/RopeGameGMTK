@@ -14,7 +14,8 @@ public class RopePhysics : MonoBehaviour
     public float frequency = 6;
 
     List<GameObject> springs = new List<GameObject>();
-    LineRenderer lineRend;
+    [SerializeField]
+    private LineRenderer lineRend;
     public float lineWidth = 0.1f;
     public Material lineMaterial;
 
@@ -25,11 +26,24 @@ public class RopePhysics : MonoBehaviour
 	[SerializeField]
 	private int ropeLayerIndex;
 
+    [SerializeField]
+    private bool isGenerated = false;
+    
+
 
 	// Start is called before the first frame update
 	void Start()
     {
-		GenerateRope();
+        if (!isGenerated)
+        {
+            GenerateRope();
+        }
+        else
+        {
+            getRope();
+            physicsDelayTime = 0;
+        }
+		
     }
 
     void GenerateRope()
@@ -89,6 +103,19 @@ public class RopePhysics : MonoBehaviour
 
         rigidbody2.GetComponent<SpringJoint2D>().connectedBody = springs[springs.Count - 1].GetComponent<Rigidbody2D>();
         rigidbody2.GetComponent<SpringJoint2D>().distance = this.lengthOfSubdivisions;
+    }
+
+    void getRope()
+    {
+        SpringJoint2D[] ropeElements = transform.GetComponentsInChildren<SpringJoint2D>();
+        int count = 0;
+        foreach(SpringJoint2D spring in ropeElements)
+        {
+            springs.Add(spring.gameObject);
+            //lineRend.positionCount += 1;
+            //lineRend.SetPosition(count,spring.transform.position);
+            count++;
+        }
     }
 
     void applyConnectedBody(int i,Rigidbody2D rb)
