@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         float x;
-        if (playerNum == 1)
+        if (playerNum == 2)
         {
             x = Input.GetAxis("HorizontalP2");
         }

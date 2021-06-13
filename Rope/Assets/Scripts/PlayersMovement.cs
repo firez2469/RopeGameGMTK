@@ -11,7 +11,7 @@ public class PlayersMovement : MonoBehaviour
     public Transform groundCheckP2;
 
     const float speed = 15.0f;
-    const float jumpForce = 90.0f;
+    const float jumpForce = 50.0f;
     const float maximumVelocity = 10.0f;
 
 
@@ -63,6 +63,7 @@ public class PlayersMovement : MonoBehaviour
         // Up Arrow is jumping
         if (hit2.collider != null)
         {
+            print(hit.transform.name);
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 player2.AddForce(new Vector2(0, jumpForce));
