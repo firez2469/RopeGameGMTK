@@ -7,8 +7,8 @@ public class KeyScript : MonoBehaviour
     bool thisKeyCollected = false;
     public static int TotalKeys()
     {
-        return GameObject.FindObjectsOfType<KeyScript>().Length;
-        //return GameObject.FindGameObjectsWithTag("Key").Length;
+        //return GameObject.FindObjectsOfType<KeyScript>().Length;
+        return GameObject.FindGameObjectsWithTag("Key").Length;
     }
 
     public static int KeysCollected = 0;
