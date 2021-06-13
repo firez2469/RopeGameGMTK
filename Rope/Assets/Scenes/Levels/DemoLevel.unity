@@ -1433,7 +1433,7 @@ MonoBehaviour:
   keysCollectedText: {fileID: 180096760}
   phaseInImage: {fileID: 1835206913}
   scene: DemoLevel
-  nextLevel: Level1
+  nextLevel: Level_1
 --- !u!4 &666053820
 Transform:
   m_ObjectHideFlags: 0
