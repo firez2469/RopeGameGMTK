@@ -71,7 +71,13 @@ public class GameManager : MonoBehaviour
 
     public void toNextLevel()
     {
-        LoadingScene.LoadScene(NextLevel);
+       
+        
+            LoadingScene.SlowLoadScene(NextLevel, false, 2);
+        
+
+        
+        //LoadingScene.LoadScene(NextLevel);
     }
     public static void RestartLevel()
     {
@@ -94,8 +100,9 @@ public class GameManager : MonoBehaviour
             }
         }
         keysCollectedText.text = KeyScript.KeysCollected.ToString();
-        if (GameManager.gameOver)
+        if (GameManager.gameOver&&nextLevel!="End"&&nextLevel!="MainMenu")
         {
+
             phaseInImage.GetComponent<Animator>().Play("PhaseOut");
             if (!startedExit)
             {
@@ -104,13 +111,24 @@ public class GameManager : MonoBehaviour
                 startedExit = true;
             }
 
+        }else if(GameManager.gameOver && (nextLevel == "End" || nextLevel == "MainMenu"))
+        {
+            if (!startedExit)
+            {
+
+                StartCoroutine(waitForExit(120f));
+                startedExit = true;
+            }
         }
         
     }
 
-    IEnumerator waitForExit()
+    IEnumerator waitForExit(float time = 3.5f)
     {
-        yield return new WaitForSeconds(3.5f);
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        cam.GetComponent<Animator>().Play("EndCreditsAnim");
+        this.nextLevel = "MainMenu";
+        yield return new WaitForSeconds(time);
         GameManager.gameOver = false;
         KeyScript.KeysCollected-= KeyScript.KeysCollected;
         this.toNextLevel();

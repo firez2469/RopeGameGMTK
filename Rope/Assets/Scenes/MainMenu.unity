@@ -2369,7 +2369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneName: Level_1
   skipLoadingScene: 0
-  customMinLoadTime: 5
+  customMinLoadTime: 3
 --- !u!114 &697685045
 MonoBehaviour:
   m_ObjectHideFlags: 0
