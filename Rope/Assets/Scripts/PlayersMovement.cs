@@ -11,7 +11,7 @@ public class PlayersMovement : MonoBehaviour
     public Transform groundCheckP2;
 
     const float speed = 15.0f;
-    const float jumpForce = 150.0f;
+    const float jumpForce = 90.0f;
     const float maximumVelocity = 10.0f;
 
 
