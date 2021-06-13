@@ -2810,6 +2810,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6372850612554257825, guid: c5011aeb7799e78458fbb4426161f124, type: 3}
+      propertyPath: m_Name
+      value: DeathP1
+      objectReference: {fileID: 0}
     - target: {fileID: 8206436582363612977, guid: c5011aeb7799e78458fbb4426161f124, type: 3}
       propertyPath: m_Constraints
       value: 4

@@ -10,6 +10,8 @@ public class SpikeComponent : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+            collision.transform.parent.GetComponentInChildren<AudioSource>().time = 0.5f;
+            collision.transform.parent.GetComponentInChildren<AudioSource>().Play();
             StartCoroutine(restartGame());
         }
     }
