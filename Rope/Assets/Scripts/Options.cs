@@ -4,8 +4,8 @@ using UnityEngine.Audio;
 
 public class Options : MonoBehaviour
 {
-	private const string PlayerPrefsPrefix = "options.";
-	private const string MasterVolumeName = "masterVolume";
+	public const string PlayerPrefsPrefix = "options.";
+	public const string MasterVolumeName = "masterVolume";
 	private const string MusicVolumeName = "musicVolume";
 	private const string SoundVolumeName = "soundVolume";
 	private static Options instance;
@@ -70,7 +70,7 @@ public class Options : MonoBehaviour
 		SetVolume(SoundVolumeName, PlayerPrefs.GetFloat(PlayerPrefsPrefix + SoundVolumeName, 1), false);
 	}
 
-	private static void SetVolume(string name, float percentage, bool storeInPrefs = true)
+	public static void SetVolume(string name, float percentage, bool storeInPrefs = true)
 	{
 		float before = GetVolume(name);
 		var input = Mathf.Max(float.Epsilon, percentage);
@@ -81,7 +81,7 @@ public class Options : MonoBehaviour
 			PlayerPrefs.SetFloat(PlayerPrefsPrefix + name, percentage);
 		}
 	}
-	private static float GetVolume(string name)
+	public static float GetVolume(string name)
 	{
 		float level;
 		if (instance.mixer.GetFloat(name, out level))
@@ -95,4 +95,6 @@ public class Options : MonoBehaviour
 			return 0;
 		}
 	}
+
+    
 }
